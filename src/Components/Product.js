@@ -42,9 +42,9 @@ export const Product = (props) => {
     const wrapper = (
         <Wrapper onClick={closeModal}> 
             <ProductBox ref={node} onClick={e => e.stopPropagation()}>
-                <p>{props.info.title}</p>
-                <img src={props.info.image} style={{height: '60%', width: '100%', objectFit: 'contain'}}></img>
-                <p>{props.info.description}</p>
+                <h2>{props.info.title}</h2>
+                <img src={props.info.image} style={{height: '50%', width: '100%', objectFit: 'contain'}}></img>
+                <p style={{fontSize:'12px'}}>{props.info.description}</p>
                 <p>Price: {props.info.price}</p>
             </ProductBox>
         </Wrapper>

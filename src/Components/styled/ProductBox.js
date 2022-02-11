@@ -12,6 +12,18 @@ export const ProductBox = styled.div`
     margin: 5%;
     border-radius: 6%;
     box-shadow: -2px 5px 2px 1px grey;
+    @media only screen and (max-width: 480px) {
+        height: 70%;
+        width: 90%;
+      }
+      @media only screen and (max-width: 760px) and (min-width: 480px) {
+        height: 80%;
+        width: 70%;
+      }
+      @media only screen and (max-width: 1000px) and (min-width: 760px) {
+        height: 90%;
+        width: 50%;
+      }
 
 `
 
