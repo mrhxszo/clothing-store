@@ -7,6 +7,7 @@ export const ProductBox = styled.div`
     background-color: white;
     position: fixed;
     height: 90%;
+    overflow: scroll;
     width: 50%;
     padding: 2%;
     margin: 5%;
