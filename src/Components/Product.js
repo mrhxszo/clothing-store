@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 
 const Wrapper = styled.div`
     position: fixed;
+    z-index:2;
     left: 0;
     top: 0;
     right: 0;
@@ -25,7 +26,7 @@ export const Product = (props) => {
             gsap.timeline().from(node.current, {
                 y: "+=800",
                 ease: "Powerout3"
-            }).duration(0.9);
+            }).duration(0.5);
         }
         
     },[displayModal]);
@@ -34,8 +35,8 @@ export const Product = (props) => {
         gsap.timeline().to(node.current, {
             y: "+=800",
             ease: "Powerout3"
-        }).duration(0.9);
-        setTimeout(()=>changeDisplay(false), 1000);
+        }).duration(0.5);
+        setTimeout(()=>changeDisplay(false), 250);
         
     }
     
