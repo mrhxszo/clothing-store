@@ -10,7 +10,7 @@ export const ProductBox = styled.div`
     height: 90%;
     overflow: scroll;
     width: 50%;
-    padding: 2%;
+    padding: 3%;
     margin: 5%;
     border-radius: 6%;
     box-shadow: -2px 5px 2px 1px grey;

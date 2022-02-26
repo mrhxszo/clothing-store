@@ -8,7 +8,7 @@ export const StyledNavbar = styled.nav`
     z-index:1;
     top:0;
     left:0;
-    background: linear-gradient(45deg, blue, green);
+    background: rgb(121,87,87,0.8);
     height: 7%;
     width: 100%;
     display: flex;
@@ -32,8 +32,13 @@ export const StyledNavLink = styled.a`
     font-family: monospace;
     cursor: pointer;
 
+
     &:hover{
         color: blue;
+    }
+
+    @media only screen and (max-width: 500px) {
+        font-size:25px;
     }
 `
 export const StyledButton = styled(MdMenu)`

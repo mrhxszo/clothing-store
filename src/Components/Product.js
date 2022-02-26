@@ -1,7 +1,9 @@
-import react, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import react, { useState, useEffect, useRef, useLayoutEffect, useContext } from 'react';
 import { ProductBox, SmallProductBox } from './styled/ProductBox';
 import styled from 'styled-components';
 import { gsap } from 'gsap';
+import { GrClose } from 'react-icons/gr';
+import { CartContent } from '../Context';
 
 const Wrapper = styled.div`
     position: fixed;
@@ -17,6 +19,8 @@ const Wrapper = styled.div`
 `
 
 export const Product = (props) => {
+
+    const { cart, setCart } = useContext(CartContent);
     
     const node = useRef(null);
     let [displayModal, changeDisplay] = useState(false);
@@ -39,26 +43,50 @@ export const Product = (props) => {
         setTimeout(()=>changeDisplay(false), 250);
         
     }
+
+    const removeFromCart = () => {
+        let newCart = cart.filter( (element) => {
+            return element.id !== props.info.id
+        }
+        );
+        setCart(newCart); 
+    }
     
     const wrapper = (
+        
         <Wrapper onClick={closeModal}> 
+        {props.info ?
             <ProductBox ref={node} onClick={e => e.stopPropagation()}>
-                <h2>{props.info.title}</h2>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <h3>{props.info.title}</h3>
+                    <GrClose style={{fontSize:'25px'}} onClick={closeModal}/>
+                </div>
                 <img src={props.info.image} style={{height: '50%', width: '100%', objectFit: 'contain'}}></img>
                 <p style={{fontSize:'12px'}}>{props.info.description}</p>
                 <p>Price: {props.info.price}</p>
-            </ProductBox>
+                <p>Category: {props.info.category}</p>
+                <div onClick={e => e.stopPropagation()}>
+                    <button onClick={ () => setCart([ ...cart, props.info]) }>Add to Cart</button>
+                    {props.fromCart ? <button onClick={ removeFromCart}>Remove from Cart</button> : null}
+                </div>
+                
+            </ProductBox> : null}
         </Wrapper>
     );
 
     return (
         <>
-            <SmallProductBox onClick={() => changeDisplay(true)}> 
+        {props.info ? 
+        <SmallProductBox onClick={() => changeDisplay(true)}> 
                 <img src={props.info.image} style={{height: '80%', width: '100%', objectFit: 'contain'}}></img>
                 <p>{props.info.title}</p>
-            </SmallProductBox>
+                <div onClick={e => e.stopPropagation()}>
+                    <button onClick={ () => setCart([ ...cart, props.info]) }>Add to Cart</button>
+                    {props.fromCart ? <button onClick={ removeFromCart}>Remove from Cart</button> : null}
+                </div>
+            </SmallProductBox>: null }
+            {displayModal? wrapper: null} 
 
-            {displayModal? wrapper: null}
                 
         </>
         

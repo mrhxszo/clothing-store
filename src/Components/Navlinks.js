@@ -24,7 +24,8 @@ const StyledUl = styled.ul`
 const Navlinks = (props) => {
 
     const click = () =>{
-        props.click(false)
+            props.click(false);
+
     }
     return(
             <StyledUl>

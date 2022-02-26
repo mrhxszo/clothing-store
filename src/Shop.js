@@ -1,36 +1,24 @@
 import react, { useState, useEffect, useRef } from 'react';
-import { Product } from './Components/Product';
 import { ShopContainer } from './Components/styled/ShopContainer';
+import Category from './Components/Category';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    Outlet
+  } from "react-router-dom";
 
 
 export const Shop = (props) => {
-    
-    const [productList, changeProductList] = useState([]);
 
-    useEffect(()=>{
-        fetchProduct();
-    },[]);
-
-    const fetchProduct = async () => {
-        let productsData = await fetch("https://fakestoreapi.com/products");
-        let products = await productsData.json();
-        changeProductList(products);
-    }
-
-
-    let generateProducts = () =>{
-        let products = [];
-        productList.forEach(element => {
-            products.push(<Product info={element} key={element.id? element.id:'00'} product={element}/>)
-            
-        });
-        return products;
-    }
-    let products = generateProducts();
+    let [header, setHeader] = useState('');
         
     return (  
         <ShopContainer>
-            {products}
+            <Category/>
+            {header ? <h2>{header}</h2> : null}
+            <Outlet context={[header, setHeader]}/>
         </ShopContainer>
     );
 }
